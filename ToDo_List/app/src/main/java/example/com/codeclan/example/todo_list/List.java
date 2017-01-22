@@ -25,4 +25,18 @@ public class List{
     public void removeTask(Listable task) {
         tasks.remove(task);
     }
+
+    public ArrayList<Listable> getTasks(){
+        return tasks;
+    }
+
+    public void removeByDescription(String description) {
+        ArrayList<Listable>toRemove = new ArrayList<>();
+        for(Listable task : tasks){
+            if(task.getDescription() == description){
+                toRemove.add(task);
+            }
+        }
+        tasks.removeAll(toRemove);
+    }
 }
