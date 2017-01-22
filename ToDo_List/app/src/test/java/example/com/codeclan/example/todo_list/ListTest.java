@@ -23,4 +23,17 @@ public class ListTest {
     public void listStartsEmpty(){
         assertEquals(0, list.numberOfTasks());
     }
+
+    @Test
+    public void canAddTask(){
+        list.addTask(task);
+        assertEquals(1, list.numberOfTasks());
+    }
+
+    @Test
+    public void canRemoveTask(){
+        list.addTask(task);
+        list.removeTask(task);
+        assertEquals(0, list.numberOfTasks());
+    }
 }

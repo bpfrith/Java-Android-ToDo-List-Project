@@ -17,4 +17,12 @@ public class List{
     public int numberOfTasks() {
         return tasks.size();
     }
+
+    public void addTask(Listable task) {
+        tasks.add(task);
+    }
+
+    public void removeTask(Listable task) {
+        tasks.remove(task);
+    }
 }
