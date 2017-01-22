@@ -8,6 +8,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by user on 22/01/2017.
  */
@@ -53,6 +55,19 @@ public class ActivityTask extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_){
+        if(item.getItemId() == R.id.action_toggle_complete){
+            List list;
+            list = SavedListPreferences.getStoredList(this);
+            ArrayList<Task> taskArrayList = List.getTasks();
+
+            Intent intent = getIntent();
+            Bundle extras = intent.getExtras();
+            int taskIndex = extras.getInt("taskIndex");
+
+            Task task = taskArrayList.get(taskIndex);
+            task.cycleComplete();
+            SavedListPreferences.setStoredList(this, List);
+        }
+        return super.onOptionsItemSelected(item);
         }
 }

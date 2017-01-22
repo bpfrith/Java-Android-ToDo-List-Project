@@ -12,4 +12,6 @@ public interface Listable{
 
     boolean getComplete();
 
+    void cycleComplete();
+
 }

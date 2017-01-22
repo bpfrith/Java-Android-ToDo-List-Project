@@ -32,4 +32,10 @@ public class TaskTest{
     public void startsIncomplete(){
         assertFalse(task.getComplete());
     }
+
+    @Test
+    public void canCycleComplete(){
+        task.cycleComplete();
+        assertTrue(task.getComplete());
+    }
 }

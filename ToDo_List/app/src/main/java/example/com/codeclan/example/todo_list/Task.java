@@ -28,4 +28,8 @@ public class Task implements Listable{
     public boolean getComplete() {
         return complete;
     }
+
+    public void cycleComplete(){
+        complete = !complete;
+    }
 }
