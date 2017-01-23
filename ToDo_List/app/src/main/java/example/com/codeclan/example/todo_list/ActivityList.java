@@ -20,10 +20,9 @@ import java.util.ArrayList;
  * Created by user on 22/01/2017.
  */
 
-public class ActivityList extends AppCompatActivity{
+public class ActivityList extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private ListView listView;
-    private ArrayList<String> taskDescriptions;
 
     @Override
     protected  void onCreate(Bundle savedInstanceState){
@@ -57,8 +56,33 @@ public class ActivityList extends AppCompatActivity{
         ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.items, taskDescriptions);
         listView.setAdapter(adapter);
 
-//        listView.setOnItemClickListener(this);
+        listView.setOnItemClickListener(this);
 
         Log.d(getClass().toString(), "ActivityList onCreate");
+    }
+
+    public void onItemClick(AdapterView<?> l, View v, int index, long id) {
+        List list;
+        list = SavedListPreferences.getSavedList(this);
+
+
+        ArrayList<Listable> taskArrayList = list.getTasks();
+        Listable task = taskArrayList.get(index);
+
+        String description = task.getDescription();
+        String details = task.getDetails();
+        boolean complete = task.getComplete();
+
+        Log.d(getClass().toString(), description + details + complete);
+
+        Intent intent = new Intent();
+        intent.setClass(this, ActivityTask.class);
+
+        intent.putExtra("taskIndex", index);
+        intent.putExtra("headline", description);
+        intent.putExtra("description", details);
+        intent.putExtra("complete", complete);
+
+        startActivity(intent);
     }
 }
