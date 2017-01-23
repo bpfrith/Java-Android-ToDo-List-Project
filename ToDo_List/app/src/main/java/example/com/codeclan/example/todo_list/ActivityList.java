@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ActivityList extends AppCompatActivity{
 
     private ListView listView;
-    private ArrayList<String> taskDescription;
+    private ArrayList<String> taskDescriptions;
 
     @Override
     protected  void onCreate(Bundle savedInstanceState){
@@ -44,7 +44,7 @@ public class ActivityList extends AppCompatActivity{
             }
         }
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this. R.layout.items, taskDescriptions);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.items, taskDescriptions);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(this);
