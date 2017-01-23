@@ -39,4 +39,11 @@ public class List{
         }
         tasks.removeAll(toRemove);
     }
+
+    public void setup(){
+        tasks.add(new Task("Hide Chocolate before Bethany gets home from work."));
+        tasks.add(new Task("Fix bugs."));
+        tasks.add(new Task("Learn Simpsons made up words."));
+        tasks.add(new Task("Teach Cohort 9 the Goblin song."));
+    }
 }

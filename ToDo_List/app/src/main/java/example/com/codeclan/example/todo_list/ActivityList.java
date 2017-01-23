@@ -38,6 +38,7 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
             list = SavedListPreferences.getSavedList(this);
         }else{
             list = new List();
+            list.setup();
             SavedListPreferences.setSavedList(this, list);
         }
 
@@ -64,7 +65,6 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> l, View v, int index, long id) {
         List list;
         list = SavedListPreferences.getSavedList(this);
-
 
         ArrayList<Listable> taskArrayList = list.getTasks();
         Listable task = taskArrayList.get(index);
