@@ -30,6 +30,6 @@ public class SavedListPreferences {
                 .getString(PREF_SAVEDLIST, null);
         Gson gson = new Gson();
         List list = gson.fromJson(listJSON, List.class);
-        return list
+        return list;
     }
 }
