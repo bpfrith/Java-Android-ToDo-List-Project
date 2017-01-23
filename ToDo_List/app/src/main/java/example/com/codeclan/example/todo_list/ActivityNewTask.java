@@ -1,10 +1,9 @@
 package example.com.codeclan.example.todo_list;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 /**
@@ -16,22 +15,31 @@ public class ActivityNewTask extends AppCompatActivity{
     EditText descriptionEditText;
     EditText detailsEditText;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.activity_main_menu, menu);
-        return true;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_task);
+
+        descriptionEditText = (EditText) findViewById(R.id.description_edit_text);
+        detailsEditText = (EditText) findViewById(R.id.details_edit_text);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent();
 
-        if(item.getItemId() == R.id.action_new_task) {
-            intent.setClass(this, ActivityNewTask.class);
+    public void onSaveNewTaskButtonPressed(View button) {
+        Intent parentIntent = new Intent();
+        parentIntent.setClass(this, ActivityList.class);
 
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
+        String newTaskHeadline = descriptionEditText.getText().toString();
+        String newTaskDescription = detailsEditText.getText().toString();
+
+        Task newTask = new Task(newTaskHeadline, newTaskDescription);
+
+        List list;
+        list = SavedListPreferences.getSavedList(this);
+
+
+        list.addTask(newTask);
+        SavedListPreferences.setSavedList(this, list);
+
+        startActivity(parentIntent);
     }
 }
