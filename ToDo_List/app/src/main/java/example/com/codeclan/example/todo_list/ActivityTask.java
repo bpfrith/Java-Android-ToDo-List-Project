@@ -49,16 +49,16 @@ public class ActivityTask extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.activity_taskmenu, menu);
+        menuInflater.inflate(R.menu.activity_task_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_toggle_complete){
+        if(item.getItemId() == R.id.action_cycle_complete){
             List list;
             list = SavedListPreferences.getStoredList(this);
-            ArrayList<Task> taskArrayList = List.getTasks();
+            ArrayList<Listable> taskArrayList = List.getTasks();
 
             Intent intent = getIntent();
             Bundle extras = intent.getExtras();

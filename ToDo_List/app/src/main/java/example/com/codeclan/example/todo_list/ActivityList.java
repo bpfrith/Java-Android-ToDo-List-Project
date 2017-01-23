@@ -29,11 +29,10 @@ public class ActivityList extends AppCompatActivity{
             list = SavedListPreferences.getStoredList(this);
         }else{
             list = new List();
-            list.setup();
             SavedListPreferences.getStoredList(this, list);
         }
 
-        ArrayList<Task> taskArrayList = list.getTasks();
+        ArrayList<Listable> taskArrayList = list.getTasks();
         String[] taskDescriptions = new String[taskArrayList.size()];
 
         for(int i = 0; i < taskArrayList.size(); i++){
@@ -45,7 +44,7 @@ public class ActivityList extends AppCompatActivity{
             }
         }
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this. R.layout.item, taskDescriptions);
+        ArrayAdapter adapter = new ArrayAdapter<>(this. R.layout.items, taskDescriptions);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(this);

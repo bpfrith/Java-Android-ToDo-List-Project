@@ -4,7 +4,7 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
-import com.gson.InstanceCreator;
+import com.google.gson.InstanceCreator;
 
 /**
  * Created by user on 22/01/2017.
@@ -21,7 +21,7 @@ public class SavedListPreferences {
 
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
-                .putString(PERF_SAVEDLIST, listJSON)
+                .putString(PREF_SAVEDLIST, listJSON)
                 .apply();
     }
 

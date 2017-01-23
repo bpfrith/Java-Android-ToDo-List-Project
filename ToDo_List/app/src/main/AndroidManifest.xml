@@ -8,6 +8,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity
+            android:name=".ActivityTaskList"
+            android:label="@string/main_screen_name">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".ActivityTaskDescription"
+            android:label="@string/app_name"
+            android:parentActivityName=".ActivityList">
+
+        </activity>
+
     </application>
 
 </manifest>
