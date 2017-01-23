@@ -49,8 +49,8 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         for(int i = 0; i < taskArrayList.size(); i++) {
             Listable task = taskArrayList.get(i);
             Log.d(getClass().toString(), String.valueOf(task.getComplete()));
-            if (!task.getComplete() && task.getDescription() != null){
-                taskDescriptions.add(Listable.getDescription());
+            if (task.getComplete() && task.getDescription() != null){
+                taskDescriptions.add(task.getDescription());
                 Log.d(getClass().toString(), task.getDescription());
                 Log.d(getClass().toString(), taskDescriptions[i]);
             }
@@ -64,27 +64,34 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         Log.d(getClass().toString(), "ActivityList onCreate");
     }
 
-//    public void onItemClick(AdapterView<?> l, View v, int index, long id) {
-//        List list;
-//        list = SavedListPreferences.getSavedList(this);
-//
-//        ArrayList<Listable> taskArrayList = list.getTasks();
-//        Listable task = taskArrayList.get(index);
-//
-//        String description = task.getDescription();
-//        String details = task.getDetails();
-//        boolean complete = task.getComplete();
-//
-//        Log.d(getClass().toString(), description + details + complete);
-//
-//        Intent intent = new Intent();
-//        intent.setClass(this, ActivityTask.class);
-//
-//        intent.putExtra("taskIndex", index);
-//        intent.putExtra("headline", description);
-//        intent.putExtra("description", details);
-//        intent.putExtra("complete", complete);
-//
-//        startActivity(intent);
-//    }
+    public void onItemClick(AdapterView<?> l, View v, int index, long id) {
+        List list;
+        list = SavedListPreferences.getSavedList(this);
+
+        ArrayList<Listable> taskArrayList = list.getTasks();
+        ArrayList<Listable> unCompletedTaskArrayList = new ArrayList<>();
+        for(Listable task : taskArrayList){
+            if(!task.getComplete()){
+                unCompletedTaskArrayList.add(task);
+            }
+        }
+
+        Listable task = unCompletedTaskArrayList.get(index);
+
+        String description = task.getDescription();
+        String details = task.getDetails();
+        boolean complete = task.getComplete();
+
+        Log.d(getClass().toString(), description + details + complete);
+
+        Intent intent = new Intent();
+        intent.setClass(this, ActivityTask.class);
+
+        intent.putExtra("taskIndex", index);
+        intent.putExtra("headline", description);
+        intent.putExtra("description", details);
+        intent.putExtra("complete", complete);
+
+        startActivity(intent);
+    }
 }

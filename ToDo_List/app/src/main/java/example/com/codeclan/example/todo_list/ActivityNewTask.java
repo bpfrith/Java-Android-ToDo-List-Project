@@ -20,7 +20,7 @@ public class ActivityNewTask extends AppCompatActivity{
         setContentView(R.layout.activity_new_task);
 
         descriptionEditText = (EditText) findViewById(R.id.description_edit_text);
-        detailsEditText = (EditText) findViewById(R.id.details_edit_text);
+//        detailsEditText = (EditText) findViewById(R.id.details_edit_text);
     }
 
 
@@ -31,7 +31,7 @@ public class ActivityNewTask extends AppCompatActivity{
         String newTaskHeadline = descriptionEditText.getText().toString();
         String newTaskDescription = detailsEditText.getText().toString();
 
-        Task newTask = new Task(newTaskHeadline, newTaskDescription);
+        Listable newTask = new Task(newTaskDescription);
 
         List list;
         list = SavedListPreferences.getSavedList(this);
