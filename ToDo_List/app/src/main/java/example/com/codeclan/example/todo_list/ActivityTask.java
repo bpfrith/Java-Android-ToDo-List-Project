@@ -53,21 +53,21 @@ public class ActivityTask extends AppCompatActivity{
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_cycle_complete){
-            List list;
-            list = SavedListPreferences.getStoredList(this);
-            ArrayList<Listable> taskArrayList = List.getTasks();
-
-            Intent intent = getIntent();
-            Bundle extras = intent.getExtras();
-            int taskIndex = extras.getInt("taskIndex");
-
-            Task task = taskArrayList.get(taskIndex);
-            task.cycleComplete();
-            SavedListPreferences.setStoredList(this, List);
-        }
-        return super.onOptionsItemSelected(item);
-        }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if(item.getItemId() == R.id.action_cycle_complete){
+//            List list;
+//            list = SavedListPreferences.getSavedList(this);
+//            ArrayList<Listable> taskArrayList = List.getTasks();
+//
+//            Intent intent = getIntent();
+//            Bundle extras = intent.getExtras();
+//            int taskIndex = extras.getInt("taskIndex");
+//
+//            Listable task = taskArrayList.get(taskIndex);
+//            task.cycleComplete();
+//            SavedListPreferences.setSavedList(this, List);
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 }
