@@ -25,6 +25,12 @@
 
         </activity>
 
+        <activity android:name=".ActivityNewTask"
+            android:label="@string/new_task"
+            android:parentActivityName=".ActivityList">
+
+        </activity>
+
     </application>
 
 </manifest>

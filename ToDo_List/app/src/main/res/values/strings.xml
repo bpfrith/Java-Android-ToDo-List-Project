@@ -3,4 +3,5 @@
     <string name="main_screen_name">ToDo List</string>
     <string name="action_new_task">New Task</string>
     <string name="action_cycle_complete">Cycle Complete</string>
+    <string name="new_task">New Task</string>
 </resources>
