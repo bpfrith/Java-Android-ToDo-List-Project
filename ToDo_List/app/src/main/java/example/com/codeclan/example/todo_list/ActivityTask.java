@@ -3,11 +3,15 @@ package example.com.codeclan.example.todo_list;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +23,7 @@ public class ActivityTask extends AppCompatActivity{
     private TextView descriptionTextView;
     private TextView detailsTextView;
     private TextView completeTextView;
+    Button completeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,21 +49,45 @@ public class ActivityTask extends AppCompatActivity{
         } else {
             completeTextView.setText("Incomplete");
         }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.activity_task_menu, menu);
-        return true;
+        completeButton = (Button)findViewById(R.id.action_cycle_complete);
     }
 
 //    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.activity_task_menu, menu);
+//        return true;
+//    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        final int taskIndex = extras.getInt("taskIndex");
+        final List list;
+
+        list = SavedListPreferences.getSavedList(this);
+        ArrayList<Listable> tasks = list.getTasks();
+
+        if(item.getItemId() == R.id.action_cycle_complete) {
+            Listable task = tasks.get(taskIndex);
+
+            task.cycleComplete();
+            boolean complete = task.getComplete();
+
+            String completeText = complete ? "Complete" : "Incomplete";
+            completeTextView.setText(completeText);
+
+            SavedListPreferences.setSavedList(this, list);
+        }
+
 //        if(item.getItemId() == R.id.action_cycle_complete){
 //            List list;
 //            list = SavedListPreferences.getSavedList(this);
-//            ArrayList<Listable> taskArrayList = List.getTasks();
+//            ArrayList<Listable> taskArrayList = list.getTasks();
 //
 //            Intent intent = getIntent();
 //            Bundle extras = intent.getExtras();
@@ -66,8 +95,41 @@ public class ActivityTask extends AppCompatActivity{
 //
 //            Listable task = taskArrayList.get(taskIndex);
 //            task.cycleComplete();
-//            SavedListPreferences.setSavedList(this, List);
+//            SavedListPreferences.setSavedList(this, list);
 //        }
-//        return super.onOptionsItemSelected(item);
-//    }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void onCompleteButtonPressed(View button) {
+        Log.d(getClass().toString(), "completeButton Log.");
+
+        //retrieves intent and extras from previous activity
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        //assigns task index from extras to variable
+        final int taskIndex = extras.getInt("taskIndex");
+        final List list;
+
+        //set variable to saved list
+        list = SavedListPreferences.getSavedList(this);
+        ArrayList<Listable> tasks = list.getTasks();
+
+        //finds action selected
+        if(button.getButtonId() == R.id.action_cycle_complete) {
+            Listable task = tasks.get(taskIndex);
+
+            //calls cycle complete on task
+            task.cycleComplete();
+            boolean complete = task.getComplete();
+
+            //Updates text without refreshing activity
+            String completeText = complete ? "Complete" : "Incomplete";
+            completeTextView.setText(completeText);
+
+            //saves
+            SavedListPreferences.setSavedList(this, list);
+        }
+        startActivity(intent);
+    }
 }

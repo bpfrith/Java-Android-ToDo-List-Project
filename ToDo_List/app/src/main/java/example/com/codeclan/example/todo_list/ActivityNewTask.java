@@ -28,10 +28,10 @@ public class ActivityNewTask extends AppCompatActivity{
         Intent parentIntent = new Intent();
         parentIntent.setClass(this, ActivityList.class);
 
-        String newTaskHeadline = descriptionEditText.getText().toString();
-        String newTaskDescription = detailsEditText.getText().toString();
+        String newDesciption = descriptionEditText.getText().toString();
+        String newDetails = detailsEditText.getText().toString();
 
-        Listable newTask = new Task(newTaskDescription);
+        Listable newTask = new Task(newDesciption);
 
         List list;
         list = SavedListPreferences.getSavedList(this);

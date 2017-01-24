@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by user on 21/01/2017.
  */
 
-public class List implements JsonDeserializer<List> {
+public class List  {
 
     ArrayList<Listable> tasks;
 
