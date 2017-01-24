@@ -1,17 +1,24 @@
 package example.com.codeclan.example.todo_list;
 
+import com.google.gson.*;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 /**
  * Created by user on 21/01/2017.
  */
 
-public class List{
+public class List implements JsonDeserializer<List> {
 
     ArrayList<Listable> tasks;
 
     public List(){
         tasks = new ArrayList<>();
+    }
+
+    public List(ArrayList<Listable> tasks) {
+        this.tasks = tasks;
     }
 
     public int numberOfTasks() {

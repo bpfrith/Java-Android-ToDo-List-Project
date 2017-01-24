@@ -4,6 +4,7 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 //import com.google.gson.InstanceCreator;
 
 /**
@@ -28,7 +29,9 @@ public class SavedListPreferences {
     public static List getSavedList(Context context){
         String listJSON = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(PREF_SAVEDLIST, null);
-        Gson gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(List.class, new ListDeserializer());
+        Gson gson = gsonBuilder.create();
         List list = gson.fromJson(listJSON, List.class);
         return list;
     }

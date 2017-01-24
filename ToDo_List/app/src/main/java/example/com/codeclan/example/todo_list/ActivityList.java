@@ -37,7 +37,7 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         if(SavedListPreferences.getSavedList(this)!=null) {
             list = SavedListPreferences.getSavedList(this);
             Log.d(getClass().toString(), list.getTasks().toString());
-            }else{
+        } else {
             list = new List();
             list.setup();
             SavedListPreferences.setSavedList(this, list);
@@ -49,14 +49,14 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         for(int i = 0; i < taskArrayList.size(); i++) {
             Listable task = taskArrayList.get(i);
             Log.d(getClass().toString(), String.valueOf(task.getComplete()));
-            if (task.getComplete() && task.getDescription() != null){
+            if (!task.getComplete() && task.getDescription() != null){
                 taskDescriptions.add(task.getDescription());
                 Log.d(getClass().toString(), task.getDescription());
-                Log.d(getClass().toString(), taskDescriptions[i]);
+//                Log.d(getClass().toString(), taskDescriptions[i]);
             }
         }
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.items, taskDescriptions);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.items, R.id.items, taskDescriptions);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(this);

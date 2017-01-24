@@ -36,8 +36,8 @@ public class ActivityTask extends AppCompatActivity{
         detailsTextView = (TextView) findViewById(R.id.details_text_view);
         completeTextView = (TextView) findViewById(R.id.complete_text_view);
 
-        descriptionTextView.setText("Description");
-        detailsTextView.setText("Details");
+        descriptionTextView.setText(description);
+        detailsTextView.setText(details);
 
         if (complete) {
             completeTextView.setText("Complete");
