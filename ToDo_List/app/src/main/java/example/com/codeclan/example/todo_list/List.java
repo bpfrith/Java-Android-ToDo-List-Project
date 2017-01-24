@@ -48,9 +48,9 @@ public class List  {
     }
 
     public void setup(){
-        tasks.add(new Task("Hide Chocolate before Bethany gets home from work."));
-        tasks.add(new Task("Fix bugs."));
-        tasks.add(new Task("Learn Simpsons made up words."));
-        tasks.add(new Task("Teach Cohort 9 the Goblin song."));
+        tasks.add(new Task("Hide Chocolate before Bethany gets home from work.", false));
+        tasks.add(new Task("Fix bugs.", false));
+        tasks.add(new Task("Learn Simpsons made up words.", false));
+        tasks.add(new Task("Teach Cohort 9 the Goblin song.", false));
     }
 }

@@ -31,7 +31,7 @@ public class ActivityNewTask extends AppCompatActivity{
         String newDesciption = descriptionEditText.getText().toString();
         String newDetails = detailsEditText.getText().toString();
 
-        Listable newTask = new Task(newDesciption);
+        Listable newTask = new Task(newDesciption, false);
 
         List list;
         list = SavedListPreferences.getSavedList(this);

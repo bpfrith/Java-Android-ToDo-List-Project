@@ -14,11 +14,13 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import static android.R.attr.button;
+
 /**
  * Created by user on 22/01/2017.
  */
 
-public class ActivityTask extends AppCompatActivity{
+public class ActivityTask extends AppCompatActivity {
 
     private TextView descriptionTextView;
     private TextView detailsTextView;
@@ -50,7 +52,7 @@ public class ActivityTask extends AppCompatActivity{
             completeTextView.setText("Incomplete");
         }
 
-        completeButton = (Button)findViewById(R.id.action_cycle_complete);
+        completeButton = (Button) findViewById(R.id.action_cycle_complete);
     }
 
 //    @Override
@@ -60,29 +62,29 @@ public class ActivityTask extends AppCompatActivity{
 //        return true;
 //    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-
-        final int taskIndex = extras.getInt("taskIndex");
-        final List list;
-
-        list = SavedListPreferences.getSavedList(this);
-        ArrayList<Listable> tasks = list.getTasks();
-
-        if(item.getItemId() == R.id.action_cycle_complete) {
-            Listable task = tasks.get(taskIndex);
-
-            task.cycleComplete();
-            boolean complete = task.getComplete();
-
-            String completeText = complete ? "Complete" : "Incomplete";
-            completeTextView.setText(completeText);
-
-            SavedListPreferences.setSavedList(this, list);
-        }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//
+//        final int taskIndex = extras.getInt("taskIndex");
+//        final List list;
+//
+//        list = SavedListPreferences.getSavedList(this);
+//        ArrayList<Listable> tasks = list.getTasks();
+//
+//        if (item.getItemId() == R.id.action_cycle_complete) {
+//            Listable task = tasks.get(taskIndex);
+//
+//            task.cycleComplete();
+//            boolean complete = task.getComplete();
+//
+//            String completeText = complete ? "Complete" : "Incomplete";
+//            completeTextView.setText(completeText);
+//
+//            SavedListPreferences.setSavedList(this, list);
+//        }
 
 //        if(item.getItemId() == R.id.action_cycle_complete){
 //            List list;
@@ -97,11 +99,12 @@ public class ActivityTask extends AppCompatActivity{
 //            task.cycleComplete();
 //            SavedListPreferences.setSavedList(this, list);
 //        }
-        return super.onOptionsItemSelected(item);
-    }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public void onCompleteButtonPressed(View button) {
-        Log.d(getClass().toString(), "completeButton Log.");
+        Log.d(getClass().toString(), "completeButton Log here.");
+
 
         //retrieves intent and extras from previous activity
         Intent intent = getIntent();
@@ -116,20 +119,24 @@ public class ActivityTask extends AppCompatActivity{
         ArrayList<Listable> tasks = list.getTasks();
 
         //finds action selected
-        if(button.getButtonId() == R.id.action_cycle_complete) {
-            Listable task = tasks.get(taskIndex);
+        completeButton = (Button) findViewById(R.id.action_cycle_complete);
+        Listable task = list.getTasks().get(taskIndex);
+        Log.d(getClass().toString(), ""+task.getComplete());
 
-            //calls cycle complete on task
-            task.cycleComplete();
-            boolean complete = task.getComplete();
+        //calls cycle complete on task
+        task.cycleComplete();
+        boolean complete = task.getComplete();
+        Log.d(getClass().toString(), ""+complete);
 
-            //Updates text without refreshing activity
-            String completeText = complete ? "Complete" : "Incomplete";
-            completeTextView.setText(completeText);
+        //Updates text without refreshing activity
+        String completeText = task.getComplete() ? "Complete" : "Incomplete";
+        completeTextView.setText(completeText);
+        //saves
+        SavedListPreferences.setSavedList(this, list);
+    }
 
-            //saves
-            SavedListPreferences.setSavedList(this, list);
-        }
-        startActivity(intent);
+    @Override
+    public void onResume(){
+        super.onResume();
     }
 }

@@ -36,6 +36,7 @@ public class TaskTest{
     @Test
     public void canCycleComplete(){
         task.cycleComplete();
+        task.cycleComplete();
         assertTrue(task.getComplete());
     }
 }
