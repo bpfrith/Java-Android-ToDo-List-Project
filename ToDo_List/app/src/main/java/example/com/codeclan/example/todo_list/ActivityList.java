@@ -28,11 +28,15 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     protected  void onCreate(Bundle savedInstanceState){
+        //layout for activity
         super.onCreate(savedInstanceState);
 
+        //sets variables in layout
         setContentView(R.layout.activity_list);
 
+        //listView set to listView in layout
         listView = (ListView) findViewById(R.id.activity_list);
+        //listener for listView
         listView.setOnItemClickListener(this);
 
         loadListFromStorage();
@@ -41,6 +45,7 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
+    //makes sure that list updates when task is deleted
     protected void onResume() {
         super.onResume();
         loadListFromStorage();
@@ -76,16 +81,19 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         List list;
         list = SavedListPreferences.getSavedList(this);
 
+        //creates an ArrayList from list
         ArrayList<Listable> taskArrayList = list.getTasks();
 
         Listable task = taskArrayList.get(index);
 
+        //gets variables from task
         String description = task.getDescription();
         String details = task.getDetails();
         boolean complete = task.getComplete();
 
         Log.d(getClass().toString(), description + details + complete);
 
+        //intent to send user to ActivityTask
         Intent intent = new Intent();
         intent.setClass(this, ActivityTask.class);
 
