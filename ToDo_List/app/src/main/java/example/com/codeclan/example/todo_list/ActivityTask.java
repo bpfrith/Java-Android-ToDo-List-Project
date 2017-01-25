@@ -147,7 +147,6 @@ public class ActivityTask extends AppCompatActivity {
     public void onDeleteButtonPressed(View button) {
         Log.d(getClass().toString(), "deleteButton Log here.");
 
-
         //retrieves intent and extras from previous activity
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();

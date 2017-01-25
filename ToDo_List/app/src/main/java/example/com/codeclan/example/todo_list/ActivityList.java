@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.content.Intent;
 import android.os.PersistableBundle;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class ActivityList extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private ListView listView;
+    Button newTaskButton;
 
     @Override
     protected  void onCreate(Bundle savedInstanceState){
@@ -130,5 +132,12 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
             throw new RuntimeException("Crash!");
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onAddTaskButtonPressed (View button) {
+        Log.d(getClass().toString(), "Add task Log here.");
+        Intent intent = getIntent();
+        intent.setClass(this, ActivityNewTask.class);
+        startActivity(intent);
     }
 }

@@ -35,7 +35,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_save_new_task"
+            android:id="@+id/button_add_new_task"
             android:text="Add"
             android:textSize="30sp"
             android:layout_gravity="right|top"

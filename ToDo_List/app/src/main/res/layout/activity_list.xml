@@ -12,4 +12,14 @@
         android:layout_height="wrap_content">
     </ListView>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_save_new_task"
+        android:text="New Task"
+        android:textSize="30sp"
+        android:layout_gravity="right|top"
+        android:layout_marginBottom="5dp"
+        android:onClick="onAddTaskButtonPressed" />
+
 </LinearLayout>
