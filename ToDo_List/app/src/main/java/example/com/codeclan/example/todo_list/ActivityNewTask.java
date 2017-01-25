@@ -20,7 +20,7 @@ public class ActivityNewTask extends AppCompatActivity{
         setContentView(R.layout.activity_new_task);
 
         descriptionEditText = (EditText) findViewById(R.id.description_edit_text);
-//        detailsEditText = (EditText) findViewById(R.id.details_edit_text);
+        detailsEditText = (EditText) findViewById(R.id.details_edit_text);
     }
 
     public void onSaveNewTaskButtonPressed(View button) {

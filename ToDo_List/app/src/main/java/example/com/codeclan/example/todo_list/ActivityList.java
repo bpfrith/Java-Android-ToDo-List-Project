@@ -33,7 +33,20 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_list);
 
         listView = (ListView) findViewById(R.id.activity_list);
+        listView.setOnItemClickListener(this);
 
+        loadListFromStorage();
+
+        Log.d(getClass().toString(), "ActivityList onCreate");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadListFromStorage();
+    }
+
+    private void loadListFromStorage() {
         List list;
 
         if(SavedListPreferences.getSavedList(this)!=null) {
@@ -51,18 +64,12 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         for(int i = 0; i < taskArrayList.size(); i++) {
             Listable task = taskArrayList.get(i);
             Log.d(getClass().toString(), String.valueOf(task.getComplete()));
-            if (!task.getComplete() && task.getDescription() != null){
-                taskDescriptions.add(task.getDescription());
-                Log.d(getClass().toString(), task.getDescription());
-            }
+            taskDescriptions.add(task.getDescription());
+            Log.d(getClass().toString(), task.getDescription());
         }
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, R.layout.items, R.id.items, taskDescriptions);
         listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(this);
-
-        Log.d(getClass().toString(), "ActivityList onCreate");
     }
 
     public void onItemClick(AdapterView<?> l, View v, int index, long id) {
@@ -70,14 +77,8 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         list = SavedListPreferences.getSavedList(this);
 
         ArrayList<Listable> taskArrayList = list.getTasks();
-        ArrayList<Listable> unCompletedTaskArrayList = new ArrayList<>();
-        for (Listable task : taskArrayList) {
-            if (!task.getComplete()) {
-                unCompletedTaskArrayList.add(task);
-            }
-        }
 
-        Listable task = unCompletedTaskArrayList.get(index);
+        Listable task = taskArrayList.get(index);
 
         String description = task.getDescription();
         String details = task.getDetails();
@@ -89,29 +90,11 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         intent.setClass(this, ActivityTask.class);
 
         intent.putExtra("taskIndex", index);
-        intent.putExtra("headline", description);
-        intent.putExtra("description", details);
+        intent.putExtra("description", description);
+        intent.putExtra("details", details);
         intent.putExtra("complete", complete);
 
         startActivity(intent);
-    }
-
-
-    //when a task is deleted it doesn't pick up on it
-    // until clicked on
-    //then crashes
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        finish();
-//        startActivity(getIntent());
-//    }
-
-    @Override
-    public void onRestart(){
-        super.onRestart();
-        finish();
-        startActivity(getIntent());
     }
 
     @Override

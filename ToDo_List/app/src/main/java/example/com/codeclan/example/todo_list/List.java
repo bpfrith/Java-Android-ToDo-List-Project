@@ -37,6 +37,10 @@ public class List  {
         return tasks;
     }
 
+    public void setTasks(ArrayList<Listable> tasks) {
+        this.tasks = tasks;
+    }
+
     public void setup(){
         tasks.add(new Task("Hide Chocolate", "Hide Chocolate before Bethany gets home from work.", false));
         tasks.add(new Task("Fix bugs.", "Always!", false));

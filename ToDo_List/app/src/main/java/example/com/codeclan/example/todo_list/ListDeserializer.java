@@ -25,7 +25,8 @@ public class ListDeserializer implements JsonDeserializer<List> {
         for (JsonElement taskJson : tasksJson) {
             String description = taskJson.getAsJsonObject().get("description").getAsString();
             String details = taskJson.getAsJsonObject().get("details").getAsString();
-            Task task = new Task(description, details, false);
+            boolean isCompleted = taskJson.getAsJsonObject().get("complete").getAsBoolean();
+            Task task = new Task(description, details, isCompleted);
             list.addTask(task);
         }
 

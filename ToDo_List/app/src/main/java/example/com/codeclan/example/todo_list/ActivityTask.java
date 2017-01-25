@@ -37,9 +37,9 @@ public class ActivityTask extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
-        String description = extras.getString("Description");
-        String details = extras.getString("Details");
-        boolean complete = extras.getBoolean("Complete");
+        String description = extras.getString("description");
+        String details = extras.getString("details");
+        boolean complete = extras.getBoolean("complete");
 
         descriptionTextView = (TextView) findViewById(R.id.description_text_view);
         detailsTextView = (TextView) findViewById(R.id.details_text_view);
@@ -67,6 +67,9 @@ public class ActivityTask extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.home) {
+            return true;
+        }
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -75,19 +78,10 @@ public class ActivityTask extends AppCompatActivity {
         final List list;
 
         list = SavedListPreferences.getSavedList(this);
-        ArrayList<Listable> allTasks = list.getTasks();
         ArrayList<Listable> tasks = list.getTasks();
 
-        for (int i = 0; i < (allTasks.size()); i++) {
-            Listable task = allTasks.get(i);
-            if (task.getComplete()) {
-                tasks.add(task);
-            }
-        }
-
-        final ArrayList<Listable> finalList = tasks;
         if (item.getItemId() == R.id.action_cycle_complete) {
-            Listable task = finalList.get(taskIndex);
+            Listable task = tasks.get(taskIndex);
 
             task.cycleComplete();
             boolean complete = task.getComplete();
@@ -97,7 +91,7 @@ public class ActivityTask extends AppCompatActivity {
             SavedListPreferences.setSavedList(this, list);
         }else if(item.getItemId() == R.id.action_delete){
 
-            Listable task = finalList.get(taskIndex);
+            Listable task = tasks.get(taskIndex);
 
             list.removeTask(task);
 
@@ -140,6 +134,7 @@ public class ActivityTask extends AppCompatActivity {
         String completeText = task.getComplete() ? "Complete" : "Incomplete";
         completeTextView.setText(completeText);
         //saves
+        list.setTasks(tasks);
         SavedListPreferences.setSavedList(this, list);
     }
 
