@@ -32,15 +32,19 @@ public class ActivityTask extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //gets layout
         setContentView(R.layout.activity_task);
 
+        //gets intent and extras from previous activity
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
+        //sets variables
         String description = extras.getString("description");
         String details = extras.getString("details");
         boolean complete = extras.getBoolean("complete");
 
+        //sets variables in layout
         descriptionTextView = (TextView) findViewById(R.id.description_text_view);
         detailsTextView = (TextView) findViewById(R.id.details_text_view);
         completeTextView = (TextView) findViewById(R.id.complete_text_view);
@@ -70,24 +74,29 @@ public class ActivityTask extends AppCompatActivity {
         if (item.getItemId() == R.id.home) {
             return true;
         }
-
+        //gets previous intent and extras
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
+        //sets variables from extras
         final int taskIndex = extras.getInt("taskIndex");
         final List list;
 
+        //get a list from saved list
         list = SavedListPreferences.getSavedList(this);
         ArrayList<Listable> tasks = list.getTasks();
 
+        //gets correct task
         if (item.getItemId() == R.id.action_cycle_complete) {
             Listable task = tasks.get(taskIndex);
 
+            //toggle complete and updates
             task.cycleComplete();
             boolean complete = task.getComplete();
             String completeText = complete ? "Complete" : "Incomplete";
             completeTextView.setText(completeText);
 
+            //saves
             SavedListPreferences.setSavedList(this, list);
         }else if(item.getItemId() == R.id.action_delete){
 
@@ -169,12 +178,12 @@ public class ActivityTask extends AppCompatActivity {
         finish();
     }
 
-    public void onEditTaskButtonPressed (View button) {
-        Log.d(getClass().toString(), "Add edit task Log here.");
-        Intent intent = getIntent();
-        intent.setClass(this, ActivityEditTask.class);
-        startActivity(intent);
-    }
+//    public void onEditTaskButtonPressed (View button) {
+//        Log.d(getClass().toString(), "Add edit task Log here.");
+//        Intent intent = getIntent();
+//        intent.setClass(this, ActivityEditTask.class);
+//        startActivity(intent);
+//    }
 
     @Override
     public void onResume(){

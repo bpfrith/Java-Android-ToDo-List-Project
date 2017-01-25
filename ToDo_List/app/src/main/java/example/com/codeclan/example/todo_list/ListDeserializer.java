@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
  */
 
 public class ListDeserializer implements JsonDeserializer<List> {
-
+    //allows me to pass Listable interface through gson
     @Override
     public List deserialize(JsonElement json, Type type,
                             JsonDeserializationContext context) throws JsonParseException {

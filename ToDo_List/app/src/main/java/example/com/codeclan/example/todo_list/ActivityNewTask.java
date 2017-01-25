@@ -17,9 +17,11 @@ public class ActivityNewTask extends AppCompatActivity{
     EditText detailsEditText;
 
     public void onCreate(Bundle savedInstanceState) {
+        //gets layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
 
+        //sets variables in layout
         descriptionEditText = (EditText) findViewById(R.id.description_edit_text);
         detailsEditText = (EditText) findViewById(R.id.details_edit_text);
     }
@@ -28,18 +30,23 @@ public class ActivityNewTask extends AppCompatActivity{
         Intent intent = new Intent();
         intent.setClass(this, ActivityList.class);
 
+        //set variables to what the user enters
         String newDesciption = descriptionEditText.getText().toString();
         String newDetails = detailsEditText.getText().toString();
 
+        //create new task
         Listable newTask = new Task(newDesciption, newDetails, false);
+
 
         List list;
         list = SavedListPreferences.getSavedList(this);
 
-
+        //Adds new task to list
         list.addTask(newTask);
+        //save
         SavedListPreferences.setSavedList(this, list);
 
+        //Redirects user to ActivityList with intent
         startActivity(intent);
     }
 }

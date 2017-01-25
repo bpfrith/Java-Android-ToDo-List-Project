@@ -13,13 +13,16 @@ import com.google.gson.GsonBuilder;
 
 public class SavedListPreferences {
 
+    //makes "savedList" key
     private static final String PREF_SAVEDLIST = "savedList";
 
     public static void setSavedList(Context context, List list){
 
+        //Gson converts list into Json
         Gson gson = new Gson();
         String listJSON = gson.toJson(list);
 
+        //Saves Json into Shared Preferences
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
                 .putString(PREF_SAVEDLIST, listJSON)
@@ -27,8 +30,10 @@ public class SavedListPreferences {
     }
 
     public static List getSavedList(Context context){
+        //Retrieves Json from Shared Preferences
         String listJSON = PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(PREF_SAVEDLIST, null);
+        //Changes Json back into java list
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(List.class, new ListDeserializer());
         Gson gson = gsonBuilder.create();
