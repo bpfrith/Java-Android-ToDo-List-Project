@@ -8,4 +8,7 @@
     <string name="action_delete">Delete</string>
     <string name="say_crash">Crash!</string>
     <string name="delete_button">Delete</string>
+    <string name="save_edit">Update</string>
+    <string name="edit_desciption">Edit Description</string>
+    <string name="edit_details">Edit Details</string>
 </resources>
