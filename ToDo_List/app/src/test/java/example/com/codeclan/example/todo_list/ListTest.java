@@ -41,13 +41,6 @@ public class ListTest {
     }
 
     @Test
-    public void canRemoveByDescirption(){
-        list.addTask(task);
-        list.removeByDescription("Hide chocolate before sister gets home.");
-        assertEquals(0, list.numberOfTasks());
-    }
-
-    @Test
     public void canGetTasks(){
         ArrayList<Listable> getTasks = new ArrayList<>();
         Task getTask;

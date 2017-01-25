@@ -37,16 +37,6 @@ public class List  {
         return tasks;
     }
 
-    public void removeByDescription(String description) {
-        ArrayList<Listable>toRemove = new ArrayList<>();
-        for(Listable task : tasks){
-            if(task.getDescription() == description){
-                toRemove.add(task);
-            }
-        }
-        tasks.removeAll(toRemove);
-    }
-
     public void setup(){
         tasks.add(new Task("Hide Chocolate before Bethany gets home from work.", false));
         tasks.add(new Task("Fix bugs.", false));

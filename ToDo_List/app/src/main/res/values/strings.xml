@@ -5,4 +5,7 @@
     <string name="action_cycle_complete">Cycle Complete</string>
     <string name="new_task">New Task</string>
     <string name="complete_button">Complete</string>
+    <string name="action_delete">Delete</string>
+    <string name="say_crash">Crash!</string>
+    <string name="delete_button">Delete</string>
 </resources>

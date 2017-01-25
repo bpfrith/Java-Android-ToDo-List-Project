@@ -52,7 +52,6 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
             if (!task.getComplete() && task.getDescription() != null){
                 taskDescriptions.add(task.getDescription());
                 Log.d(getClass().toString(), task.getDescription());
-//                Log.d(getClass().toString(), taskDescriptions[i]);
             }
         }
 
@@ -70,8 +69,8 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
 
         ArrayList<Listable> taskArrayList = list.getTasks();
         ArrayList<Listable> unCompletedTaskArrayList = new ArrayList<>();
-        for(Listable task : taskArrayList){
-            if(!task.getComplete()){
+        for (Listable task : taskArrayList) {
+            if (!task.getComplete()) {
                 unCompletedTaskArrayList.add(task);
             }
         }
@@ -93,5 +92,23 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         intent.putExtra("complete", complete);
 
         startActivity(intent);
+    }
+
+
+    //when a task is deleted it doesn't pick up on it
+    // until clicked on
+    //then crashes
+    @Override
+    public void onResume() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.activity_main_menu, menu);
+        return true;
     }
 }
