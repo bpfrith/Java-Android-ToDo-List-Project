@@ -100,7 +100,7 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
     //then crashes
     @Override
     public void onResume() {
-        super.onRestart();
+        super.onResume();
         finish();
         startActivity(getIntent());
     }
@@ -110,5 +110,18 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_main_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent intent = new Intent();
+
+        if(item.getItemId() == R.id.action_new_task){
+            intent.setClass(this, ActivityNewTask.class);
+            startActivity(intent);
+        }else if(item.getItemId() == R.id.action_crash){
+            throw new RuntimeException("Crash!");
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
