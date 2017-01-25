@@ -32,9 +32,10 @@ public class ActivityEditTask extends AppCompatActivity{
         detailsEditText = (EditText)findViewById(R.id.details_edit_text);
     }
 
-    @Override
+//    @Override
     protected void onEditTaskButtonPressed(Context context){
-        Log.d(getClass().toString(), "deleteButton Log here.");
+//    protected void onUpdateTaskButtonPressed(View button){
+        Log.d(getClass().toString(), "editButton Log here.");
 
         //retrieves intent and extras from previous activity
         Intent oldIntent = getIntent();

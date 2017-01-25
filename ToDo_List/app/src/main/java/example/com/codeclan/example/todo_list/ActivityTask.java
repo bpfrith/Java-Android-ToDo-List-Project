@@ -169,6 +169,13 @@ public class ActivityTask extends AppCompatActivity {
         finish();
     }
 
+    public void onEditTaskButtonPressed (View button) {
+        Log.d(getClass().toString(), "Add edit task Log here.");
+        Intent intent = getIntent();
+        intent.setClass(this, ActivityEditTask.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onResume(){
         super.onResume();

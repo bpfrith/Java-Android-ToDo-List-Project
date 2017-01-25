@@ -44,6 +44,16 @@
         android:onClick="onCompleteButtonPressed"/>
 
     <Button
+        android:id="@+id/edit_task_button"
+        android:text="@string/edit_task_button"
+        android:textSize="30sp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onEditTaskButtonPressed"/>
+
+    <Button
         android:id="@+id/delete_button"
         android:text="@string/delete_button"
         android:textSize="30sp"
