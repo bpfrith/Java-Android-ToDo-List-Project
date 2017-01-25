@@ -10,9 +10,9 @@ public class Task implements Listable{
     String details;
     boolean complete;
 
-    public Task(String description, boolean arg){
+    public Task(String description, String details, boolean arg){
         this.description = description;
-        this.details = "";
+        this.details = details;
         complete = arg;
     }
 

@@ -38,9 +38,9 @@ public class List  {
     }
 
     public void setup(){
-        tasks.add(new Task("Hide Chocolate before Bethany gets home from work.", false));
-        tasks.add(new Task("Fix bugs.", false));
-        tasks.add(new Task("Learn Simpsons made up words.", false));
-        tasks.add(new Task("Teach Cohort 9 the Goblin song.", false));
+        tasks.add(new Task("Hide Chocolate", "Hide Chocolate before Bethany gets home from work.", false));
+        tasks.add(new Task("Fix bugs.", "Always!", false));
+        tasks.add(new Task("Simpsons slang.", "Learn Simpsons made up words.", false));
+        tasks.add(new Task("Teach Cohort 9 the Goblin song.", "See the little goblin, see his little feet, see his little nosey wosey, isn't the goblin sweet. Woof!", false));
     }
 }

@@ -23,15 +23,14 @@ public class ActivityNewTask extends AppCompatActivity{
 //        detailsEditText = (EditText) findViewById(R.id.details_edit_text);
     }
 
-
     public void onSaveNewTaskButtonPressed(View button) {
-        Intent parentIntent = new Intent();
-        parentIntent.setClass(this, ActivityList.class);
+        Intent intent = new Intent();
+        intent.setClass(this, ActivityList.class);
 
         String newDesciption = descriptionEditText.getText().toString();
         String newDetails = detailsEditText.getText().toString();
 
-        Listable newTask = new Task(newDesciption, false);
+        Listable newTask = new Task(newDesciption, newDetails, false);
 
         List list;
         list = SavedListPreferences.getSavedList(this);
@@ -40,6 +39,6 @@ public class ActivityNewTask extends AppCompatActivity{
         list.addTask(newTask);
         SavedListPreferences.setSavedList(this, list);
 
-        startActivity(parentIntent);
+        startActivity(intent);
     }
 }

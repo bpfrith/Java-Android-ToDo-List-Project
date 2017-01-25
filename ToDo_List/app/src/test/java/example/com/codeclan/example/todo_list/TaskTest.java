@@ -15,12 +15,12 @@ public class TaskTest{
 
     @Before
     public void before(){
-        task = new Task("Learn Simpsons made up words.");
+        task = new Task("Simpsons Words", "Learn Simpsons made up words.", false);
     }
 
     @Test
     public void canGetDescription(){
-        assertEquals("Learn Simpsons made up words.", task.getDescription());
+        assertEquals("Learn Simpsons", task.getDescription());
     }
 
     @Test

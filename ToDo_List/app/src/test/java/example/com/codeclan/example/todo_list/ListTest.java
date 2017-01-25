@@ -19,7 +19,7 @@ public class ListTest {
     @Before
     public void before(){
         list = new List();
-        task = new Task("Hide chocolate before sister gets home.");
+        task = new Task("Chocolate", "Hide chocolate before sister gets home.", false);
     }
 
     @Test
@@ -51,6 +51,6 @@ public class ListTest {
         getTask = (Task) getTasks.get(0);
         taskDescription = getTask.getDescription();
 
-        assertEquals("Hide chocolate before sister gets home.", taskDescription);
+        assertEquals("Chocolate", taskDescription);
     }
 }
