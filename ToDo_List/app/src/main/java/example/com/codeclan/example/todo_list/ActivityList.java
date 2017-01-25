@@ -98,9 +98,16 @@ public class ActivityList extends AppCompatActivity implements AdapterView.OnIte
     //when a task is deleted it doesn't pick up on it
     // until clicked on
     //then crashes
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        finish();
+//        startActivity(getIntent());
+//    }
+
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onRestart(){
+        super.onRestart();
         finish();
         startActivity(getIntent());
     }
